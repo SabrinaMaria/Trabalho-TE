@@ -2,7 +2,8 @@ package com.example.trabalhote;
 
 public class Customer {
     private Integer id;
-    private Integer birthDateInMillis;
+    private String creationTimestamp;
+    private String birthDateInMillis;
     private boolean blacklist;
     private String name;
     private String phoneNumber;
@@ -15,11 +16,19 @@ public class Customer {
         this.id = id;
     }
 
-    public Integer getBirthDateInMillis() {
+    public String getCreationTimestamp() {
+        return creationTimestamp;
+    }
+
+    public void setCreationTimestamp(String creationTimestamp) {
+        this.creationTimestamp = creationTimestamp;
+    }
+
+    public String getBirthDateInMillis() {
         return birthDateInMillis;
     }
 
-    public void setBirthDateInMillis(Integer birthDateInMillis) {
+    public void setBirthDateInMillis(String birthDateInMillis) {
         this.birthDateInMillis = birthDateInMillis;
     }
 

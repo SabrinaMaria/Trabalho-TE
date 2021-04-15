@@ -10,12 +10,8 @@ import android.widget.CompoundButton;
 
 import com.google.android.material.textfield.TextInputEditText;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
     private TextInputEditText textName;
@@ -24,18 +20,21 @@ public class MainActivity extends AppCompatActivity {
     private CheckBox checkBlacklist;
     private Button buttonRegister;
     private Retrofit retrofit;
+    private CustomerService customerService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
         initializer();
 
         retrofit = new Retrofit.Builder()
                 .baseUrl("http://guisfco-online-shopping-api.herokuapp.com/api/online-shopping/")
+                .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        setContentView(R.layout.activity_main);
+        customerService = retrofit.create(CustomerService.class);
 
         Customer customer = new Customer();
 
@@ -51,17 +50,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 customer.setName(textName.getText().toString());
                 customer.setPhoneNumber(textPhoneNumber.getText().toString());
-
-                DateFormat formatter = new SimpleDateFormat("dd/mm/yyyy");
-                Date date = null;
-                try {
-                    date = formatter.parse(textBirthDate.getText().toString());
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                //customer.setBirthDateInMillis(date);
-
+                customer.setBirthDateInMillis(textBirthDate.getText().toString());
                 customer.setBlacklist(checkBlacklist.isChecked());
+
+                customerService.create(customer);
             }
         });
     }

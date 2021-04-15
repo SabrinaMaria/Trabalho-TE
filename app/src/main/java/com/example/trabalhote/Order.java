@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Order {
     private Integer id;
+    private String creationTimestamp;
     private Integer customerId;
     private ArrayList<Product> products = new ArrayList<Product>();
 
@@ -13,6 +14,14 @@ public class Order {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getCreationTimestamp() {
+        return creationTimestamp;
+    }
+
+    public void setCreationTimestamp(String creationTimestamp) {
+        this.creationTimestamp = creationTimestamp;
     }
 
     public Integer getCustomerId() {
