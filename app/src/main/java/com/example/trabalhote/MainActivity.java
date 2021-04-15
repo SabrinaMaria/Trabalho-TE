@@ -15,18 +15,25 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import retrofit2.Retrofit;
+
 public class MainActivity extends AppCompatActivity {
     private TextInputEditText textName;
     private TextInputEditText textPhoneNumber;
     private TextInputEditText textBirthDate;
     private CheckBox checkBlacklist;
     private Button buttonRegister;
+    private Retrofit retrofit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         initializer();
+
+        retrofit = new Retrofit.Builder()
+                .baseUrl("http://guisfco-online-shopping-api.herokuapp.com/api/online-shopping/")
+                .build();
 
         setContentView(R.layout.activity_main);
 

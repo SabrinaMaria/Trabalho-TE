@@ -1,12 +1,21 @@
 package com.example.trabalhote;
 
 public class Product {
+    private Integer id;
     private String description;
     private boolean enabled;
     private String imageUrl;
     private String name;
     private float price;
     private float stockLevel;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getDescription() {
         return description;

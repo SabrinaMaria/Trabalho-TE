@@ -1,10 +1,19 @@
 package com.example.trabalhote;
 
 public class Customer {
+    private Integer id;
     private Integer birthDateInMillis;
     private boolean blacklist;
     private String name;
     private String phoneNumber;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Integer getBirthDateInMillis() {
         return birthDateInMillis;
